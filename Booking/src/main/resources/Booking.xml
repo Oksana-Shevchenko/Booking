@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean id="bookingFacade" class="com.epam.facade.BookingFacade">
+    	<constructor-arg ref="eventService"/>
+    	<constructor-arg ref="ticketService"/>
+    	<constructor-arg ref="userService"/>
+    </bean>
+    
+    <bean id="eventService" class="com.epam.service.EventServiceImpl" autowire="autodetect"/>
+	<bean id="ticketService" class="com.epam.service.TicketServiceImpl" autowire="autodetect"/>
+	<bean id="userService" class="com.epam.service.UserServiceImpl" autowire="autodetect"/>
+	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBooking">
+	    <property name="fileName" value="//"/>
+	</bean>
+	
+</beans>
