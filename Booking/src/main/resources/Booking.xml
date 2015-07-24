@@ -13,10 +13,13 @@
     
     <bean id="eventService" class="com.epam.service.EventServiceImpl" autowire="byType"/>
 	<bean id="ticketService" class="com.epam.service.TicketServiceImpl" autowire="byType"/>
-	<bean id="userService" class="com.epam.service.UserServiceImpl" autowire="byType"/>
+	<bean id="userService" class="com.epam.service.UserServiceImpl" autowire="byName"/>
 	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBookingImpl">
 	   <property name="fileNameEvent" value="src/main/resources/Event.json"/>
 	   <property name="fileNameTicket" value="src/main/resources/Ticket.json"/>
 	   <property name="fileNameUser" value="src/main/resources/User.json"/>
 	</bean>
+	
+	<bean id="userDao" class="com.epam.dao.mock.UserDaoImpl" autowire="byName"/>
+	
 </beans>

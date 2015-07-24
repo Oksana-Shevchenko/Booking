@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
@@ -103,13 +101,4 @@ public class RepositoryBookingImpl implements RepositoryBooking{
 		}
 		return repository;
 	}
-	/*public static void main(String[] args) {
-	RepositoryBookingImpl bb = new RepositoryBookingImpl();
-	Map<String, Object> h= bb.generateRepository();
-	for(Entry<String, Object> jj: h.entrySet()){
-		if(jj.getKey().contains("event")){
-			System.out.println(jj.getKey()+((Event)jj.getValue()).getId());
-		}
-	}
-	}*/
 }

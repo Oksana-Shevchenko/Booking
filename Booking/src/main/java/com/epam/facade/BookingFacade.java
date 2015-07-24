@@ -12,7 +12,7 @@ import com.epam.model.User;
  * Groups together all operations related to tickets booking.
  * Created by maksym_govorischev.
  */
-public interface BookinFacade {
+public interface BookingFacade {
 	/**
      * Gets event by its id.
      * @return Event.

@@ -13,7 +13,7 @@ import com.epam.service.UserService;
 
 
 
-public class BookingFacadeImpl implements BookinFacade {
+public class BookingFacadeImpl implements BookingFacade {
 	private EventService eventService;
 	private TicketService ticketService;
 	private UserService userService;
