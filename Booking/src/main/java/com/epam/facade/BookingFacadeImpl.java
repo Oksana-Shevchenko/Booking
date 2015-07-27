@@ -24,30 +24,37 @@ public class BookingFacadeImpl implements BookingFacade {
 		this.userService = userService;
 	}
 
+	//TODO:
 	public Event getEventById() {
 		return eventService.getEventById();
 	}
 
+	//TODO:
 	public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
 		return eventService.getEventsByTitle(title, pageSize, pageNum);
 	}
 
+	//TODO:
 	public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
 		return eventService.getEventsForDay(day, pageSize, pageNum);
 	}
 
+	//TODO:
 	public Event createEvent(Event event) {
 		return eventService.createEvent(event);
 	}
 
+	//TODO:
 	public Event updateEvent(Event event) {
 		return eventService.updateEvent(event);
 	}
 
+	//TODO:
 	public boolean deleteEvent(long eventId) {
 		return eventService.deleteEvent(eventId);
 	}
 
+	//TODO:
 	public User getUserById() {
 		return userService.getUserById();
 	}
@@ -72,6 +79,7 @@ public class BookingFacadeImpl implements BookingFacade {
 		return userService.deleteUser(userId);
 	}
 
+	//TODO:
 	public Ticket bookTicket(long userId, long eventId, int place,
 			Category category) {
 		return ticketService.bookTicket(userId, eventId, place, category);

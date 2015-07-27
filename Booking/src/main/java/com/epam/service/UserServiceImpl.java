@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	//TODO:Not implemented
+	
 	public List<User> getUsersByName(String name, int pageSize, int pageNum) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> lst = getUserDao().getUsersByName(name, pageSize, pageNum);
+		return lst;
 	}
 
 	public User getUserByEmail(String email) {
@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
-	//TODO:Not implemented
 	public User createUser(User user) {
 		if (getUserDao().getUserByEmail(user.getEmail()) != null) {
 			return null;
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService{
 			return newUser;
 		}
 	}
-	//TODO:Not implemented
+
 	public User updateUser(User user) {
 		if (getUserDao().getUserByEmail(user.getEmail()) == null) {
 			return null;

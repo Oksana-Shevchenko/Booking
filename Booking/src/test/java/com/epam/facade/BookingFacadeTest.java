@@ -1,4 +1,6 @@
 package com.epam.facade;
+
+import java.util.List;
 import java.util.Map;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -6,8 +8,12 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.epam.model.Event;
+import com.epam.model.EventImpl;
+import com.epam.model.Ticket;
 import com.epam.model.User;
 import com.epam.model.UserImpl;
+import com.epam.model.Ticket.Category;
 import com.epam.repository.RepositoryBooking;
 
 public class BookingFacadeTest {
@@ -60,5 +66,50 @@ public class BookingFacadeTest {
 		user.setName("Sandra");
 		User updatedUser = bookingFacade.updateUser(user);
 		Assert.assertNotNull(updatedUser);
-	}	
+	}
+	
+	@Test
+	public void getUsersByName() {
+		String name="Tina";
+		int pageSize=1, pageNum=1;
+		List<User> lst = bookingFacade.getUsersByName(name, pageSize, pageNum);
+		Assert.assertEquals(lst.size(), 2);
+	}
+	
+	@Test	
+	public void cancelTicket() {
+		long ticketId=1;
+		Assert.assertTrue(bookingFacade.cancelTicket(ticketId));
+	}
+	
+	@Test
+	public void getBookedTicketsForEvent() {
+		int pageSize=1, pageNum=1;
+		Event event = new EventImpl();
+		event.setId(7);
+		//event.setTitle("4th World Congress of Dermoscopy Conference");
+		//event.setDate(14325012);
+		List<Ticket> lst = bookingFacade.getBookedTickets(event, pageSize, pageNum);
+		Assert.assertEquals(lst.size(), 1);
+	}
+	
+	@Test
+	public void getBookedTicketsForUser() {
+		int pageSize=1, pageNum=1;
+		User user = new UserImpl();
+		user.setId(6);
+		//event.setTitle("4th World Congress of Dermoscopy Conference");
+		//event.setDate(14325012);
+		List<Ticket> lst = bookingFacade.getBookedTickets(user, pageSize, pageNum);
+		Assert.assertEquals(lst.size(), 1);
+	}
+	
+	@Test
+	public void bookTicket() {
+		long userId=6, eventId=6;
+		int place = 222;
+		Category category = Category.BAR;
+		Ticket ticket = bookingFacade.bookTicket(userId, eventId, place, category);
+		Assert.assertNotNull(ticket);
+	}
 }

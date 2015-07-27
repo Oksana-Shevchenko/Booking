@@ -1,5 +1,7 @@
 package com.epam.dao.mock;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -15,11 +17,11 @@ public class UserDaoImpl implements UserDao{
 		repositoryBooking = repository;
 	}
 	
-	public RepositoryBooking getRepositoryBooking(){
+	public RepositoryBooking getRepositoryBooking() {
 		return repositoryBooking;
 	}
 	
-	public boolean delete(long idUser){
+	public boolean delete(long idUser) {
 		Map<String, Object> repository = getRepositoryBooking().generateRepository();
 		String key = "'user:" + idUser + "'"; 
 		if (!repository.containsKey(key)) {
@@ -30,7 +32,7 @@ public class UserDaoImpl implements UserDao{
 		}		
 	}
 	
-	public User getUserByEmail(String email){
+	public User getUserByEmail(String email) {
 		Map<String, Object> repository = getRepositoryBooking().generateRepository();
 		for(Entry<String, Object> item: repository.entrySet()){
 			if(item.getKey().contains("user")){
@@ -42,7 +44,7 @@ public class UserDaoImpl implements UserDao{
 		return null;
 	}
 	
-	public User createUser(User user){
+	public User createUser(User user) {
 		Map<String, Object> repository = getRepositoryBooking().generateRepository();
 		String userId = "'user:" + user.getId()+"'";
 		repository.put(userId, user);
@@ -50,12 +52,26 @@ public class UserDaoImpl implements UserDao{
 		return newUser;
 	}
 	
-	public User updateUser(User user){
+	public User updateUser(User user) {
 		Map<String, Object> repository = getRepositoryBooking().generateRepository();
 		String userId = "'user:" + user.getId()+"'";
 		User updatedUser = (User) repository.get(userId);
 		updatedUser.setName(user.getName());
 		repository.put(userId, updatedUser);
 		return updatedUser;
+	}
+	
+	//TODO: pageSize and pageNum
+	public List<User> getUsersByName(String name, int pageSize, int pageNum) {
+		Map<String, Object> repository = getRepositoryBooking().generateRepository();
+		List<User> lst = new ArrayList<User>();
+		for (Entry<String, Object> item: repository.entrySet()) {
+			if (item.getKey().contains("user")) {
+				if (((User)item.getValue()).getName().contains(name)) {
+					lst.add((User)item.getValue());
+				}
+			}
+		}
+		return lst;
 	}
 }
