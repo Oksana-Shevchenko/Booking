@@ -1,5 +1,6 @@
 package com.epam.facade;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.junit.Assert;
@@ -111,5 +112,31 @@ public class BookingFacadeTest {
 		Category category = Category.BAR;
 		Ticket ticket = bookingFacade.bookTicket(userId, eventId, place, category);
 		Assert.assertNotNull(ticket);
+	}
+	
+	@Test	
+	public void deleteEvent() {
+		long eventId=1;
+		Assert.assertTrue(bookingFacade.deleteEvent(eventId));
+	}
+	
+	@Test
+	public void updateEvent() {
+		Event event = new EventImpl();
+		event.setId(6);
+		event.setTitle("New Title");
+		event.setDate(new Date());
+		Event updatedEvent = bookingFacade.updateEvent(event);
+		Assert.assertNotNull(updatedEvent);
+	}
+	
+	@Test
+	public void createEvent() {
+		Event event = new EventImpl();
+		event.setId(8);
+		event.setDate(new Date());
+		event.setTitle("New Title");
+		Event newEvent = bookingFacade.createEvent(event);
+		Assert.assertNotNull(newEvent);
 	}
 }

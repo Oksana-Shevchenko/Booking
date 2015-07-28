@@ -49,7 +49,6 @@ public class BookingFacadeImpl implements BookingFacade {
 		return eventService.updateEvent(event);
 	}
 
-	//TODO:
 	public boolean deleteEvent(long eventId) {
 		return eventService.deleteEvent(eventId);
 	}
@@ -79,7 +78,6 @@ public class BookingFacadeImpl implements BookingFacade {
 		return userService.deleteUser(userId);
 	}
 
-	//TODO:
 	public Ticket bookTicket(long userId, long eventId, int place,
 			Category category) {
 		return ticketService.bookTicket(userId, eventId, place, category);

@@ -21,5 +21,6 @@
 	</bean>
 	
 	<bean id="userDao" class="com.epam.dao.mock.UserDaoImpl" autowire="byName"/>
-	<bean id="ticketDao" class="com.epam.dao.mock.TicketDaoImpl" autowire="byName"/>	
+	<bean id="ticketDao" class="com.epam.dao.mock.TicketDaoImpl" autowire="byName"/>
+	<bean id="eventDao" class="com.epam.dao.mock.EventDaoImpl" autowire="byName"/>		
 </beans>
