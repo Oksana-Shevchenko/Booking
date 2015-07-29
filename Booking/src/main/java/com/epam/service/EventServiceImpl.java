@@ -33,13 +33,13 @@ public class EventServiceImpl implements EventService{
 	}
 
 	public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Event> lst = getEventDao().getEventsByTitle(title, pageSize, pageNum);
+		return lst;
 	}
 
 	public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Event> lst = getEventDao().getEventsForDay(day, pageSize, pageNum);
+		return lst;
 	}
 
 	public Event createEvent(Event event) {

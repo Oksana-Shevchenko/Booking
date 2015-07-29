@@ -1,10 +1,13 @@
 package com.epam.dao.mock;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.epam.dao.EventDao;
 import com.epam.model.Event;
-import com.epam.model.User;
 import com.epam.repository.RepositoryBooking;
 
 public class EventDaoImpl implements EventDao{
@@ -45,5 +48,31 @@ public class EventDaoImpl implements EventDao{
 		repository.put(eventId, event);
 		Event newEvent = (Event) repository.get(eventId);
 		return newEvent;
+	}
+
+	public List<Event> getEventsForDay(Date day, int pageSize, int pageNum) {
+		Map<String, Object> repository = getRepositoryBooking().generateRepository();
+		List<Event> lst = new ArrayList<Event>();
+		for (Entry<String, Object> item: repository.entrySet()) {
+			if (item.getKey().contains("event")) {
+				if (((Event)item.getValue()).getDate().equals(day)) {
+					lst.add((Event)item.getValue());
+				}
+			}
+		}
+		return lst;
+	}
+
+	public List<Event> getEventsByTitle(String title, int pageSize, int pageNum) {
+		Map<String, Object> repository = getRepositoryBooking().generateRepository();
+		List<Event> lst = new ArrayList<Event>();
+		for (Entry<String, Object> item: repository.entrySet()) {
+			if (item.getKey().contains("event")) {
+				if (((Event)item.getValue()).getTitle().equals(title)) {
+					lst.add((Event)item.getValue());
+				}
+			}
+		}
+		return lst;
 	}
 }

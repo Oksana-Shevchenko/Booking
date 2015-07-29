@@ -139,4 +139,20 @@ public class BookingFacadeTest {
 		Event newEvent = bookingFacade.createEvent(event);
 		Assert.assertNotNull(newEvent);
 	}
+	
+	@Test
+	public void getEventsForDay() {
+		int pageSize=1, pageNum=1;
+		Date dt = new Date(14324148);
+		List<Event> lst = bookingFacade.getEventsForDay(dt, pageSize, pageNum);
+		Assert.assertEquals(lst.size(), 2);
+	}
+	
+	@Test
+	public void getEventsByTitle() {
+		int pageSize=1, pageNum=1;
+		String title = "2015 ASCRS Glaucoma Day";
+		List<Event> lst = bookingFacade.getEventsByTitle(title, pageSize, pageNum);
+		Assert.assertEquals(lst.size(), 1);
+	}
 }
