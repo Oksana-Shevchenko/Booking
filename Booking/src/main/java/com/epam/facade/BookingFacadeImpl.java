@@ -3,6 +3,9 @@ package com.epam.facade;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.epam.model.Event;
 import com.epam.model.Ticket;
 import com.epam.model.Ticket.Category;
@@ -17,6 +20,8 @@ public class BookingFacadeImpl implements BookingFacade {
 	private EventService eventService;
 	private TicketService ticketService;
 	private UserService userService;
+	
+	private static final Logger logger = LogManager.getLogger(BookingFacadeImpl.class);
 	
 	public BookingFacadeImpl(EventService eventService, TicketService ticketService, UserService userService){
 		this.eventService = eventService;
@@ -92,6 +97,7 @@ public class BookingFacadeImpl implements BookingFacade {
 	}
 
 	public boolean cancelTicket(long ticketId) {
+		logger.debug("aaaaaaaa jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
 		return ticketService.cancelTicket(ticketId);
 	}
 }
