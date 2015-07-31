@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
@@ -25,6 +28,8 @@ public class RepositoryBookingImpl implements RepositoryBooking{
 	private String fileNameEvent;
 	private String fileNameTicket;
 	private String fileNameUser;
+	
+	private static final Logger logger = LogManager.getLogger(RepositoryBookingImpl.class);
 	
 	public String getFileNameUser(){
 		return fileNameUser;
@@ -65,15 +70,16 @@ public class RepositoryBookingImpl implements RepositoryBooking{
 	private Map<String, Object> generate(String fileName) {
 		StringBuilder bldr;
 		File file = new File(fileName);
+		logger.debug("RepositoryBookingImpl: start method generate");
 		try {
 			InputStream inputStream = new FileInputStream(file);
 			JsonFactory jsonFactory = new JsonFactory();
 			ObjectMapper mapper = new ObjectMapper();
 			
 			try {
+				Object item = null;
 				JsonParser jParser = jsonFactory.createJsonParser(inputStream);
 				jParser.nextToken();
-				Object item = null;
 				
 				while (jParser.nextToken() == JsonToken.START_OBJECT) {
 					bldr = new StringBuilder();
@@ -90,15 +96,17 @@ public class RepositoryBookingImpl implements RepositoryBooking{
 					if (item != null) {
 						repository.put(bldr.toString(), item);
 					}
+					logger.debug("Repository item id: " + bldr.toString());
 				}
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (JsonProcessingException ex) {
+				logger.error(ex.getMessage());
+			} catch (IOException ex) {
+				logger.error(ex.getMessage());
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (FileNotFoundException ex) {
+			logger.error(ex.getMessage());
 		}
+		logger.debug("RepositoryBookingImpl: end method generate");
 		return repository;
 	}
 }
