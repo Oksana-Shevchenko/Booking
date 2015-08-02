@@ -27,8 +27,8 @@ public class EventServiceImpl implements EventService{
 		return repositoryBooking;
 	}
 	
+	//TODO:Not implemented
 	public Event getEventById() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

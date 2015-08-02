@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
@@ -14,13 +15,12 @@
     <bean id="eventService" class="com.epam.service.EventServiceImpl" autowire="byType"/>
 	<bean id="ticketService" class="com.epam.service.TicketServiceImpl" autowire="byType"/>
 	<bean id="userService" class="com.epam.service.UserServiceImpl" autowire="byName"/>
-	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBookingImpl">
-	   <property name="fileNameEvent" value="src/main/resources/Event.json"/>
-	   <property name="fileNameTicket" value="src/main/resources/Ticket.json"/>
-	   <property name="fileNameUser" value="src/main/resources/User.json"/>
-	</bean>
+	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBookingImpl"
+			p:fileNameEvent="src/main/resources/Event.json"
+			p:fileNameTicket="src/main/resources/Ticket.json"
+			p:fileNameUser="src/main/resources/User.json"/>
 	
-	<bean id="userDao" class="com.epam.dao.mock.UserDaoImpl" autowire="byName"/>
-	<bean id="ticketDao" class="com.epam.dao.mock.TicketDaoImpl" autowire="byName"/>
-	<bean id="eventDao" class="com.epam.dao.mock.EventDaoImpl" autowire="byName"/>		
+	<bean id="userDao" class="com.epam.dao.mock.UserDaoImpl" p:repositoryBooking-ref="repositoryBooking"/>
+	<bean id="ticketDao" class="com.epam.dao.mock.TicketDaoImpl" p:repositoryBooking-ref="repositoryBooking"/>
+	<bean id="eventDao" class="com.epam.dao.mock.EventDaoImpl" p:repositoryBooking-ref="repositoryBooking"/>		
 </beans>
