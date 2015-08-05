@@ -109,4 +109,13 @@ public class RepositoryBookingImpl implements RepositoryBooking{
 		logger.debug("RepositoryBookingImpl: end method generate");
 		return repository;
 	}
+	
+	public void init() {
+		if (repository == null){
+			repository = new HashMap<String, Object>();
+			repository = generate(getFileNameEvent());
+			repository.putAll(generate(getFileNameTicket()));
+			repository.putAll(generate(getFileNameUser()));
+		}
+	}
 }

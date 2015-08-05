@@ -15,7 +15,7 @@
     <bean id="eventService" class="com.epam.service.EventServiceImpl" autowire="byType"/>
 	<bean id="ticketService" class="com.epam.service.TicketServiceImpl" autowire="byType"/>
 	<bean id="userService" class="com.epam.service.UserServiceImpl" autowire="byName"/>
-	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBookingImpl"
+	<bean id="repositoryBooking" class="com.epam.repository.RepositoryBookingImpl" init-method="init"
 			p:fileNameEvent="src/main/resources/Event.json"
 			p:fileNameTicket="src/main/resources/Ticket.json"
 			p:fileNameUser="src/main/resources/User.json"/>
